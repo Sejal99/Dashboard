@@ -1,31 +1,67 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import Button from '@mui/material/Button';
+import TextField from "@mui/material/TextField";
+import {Card, Typography} from "@mui/material";
+
 const Signup = () => {
-    const [useremail,setuseremail]=useState('')
-    console.log(useremail);
-    const [userpassword,setuserpassword]=useState('')
-    console.log(userpassword);
-  return (
-    <div>
-        <h2>Signup</h2>
-      <form style={{alignItems:'center'}}>
-        {/* <label for="email">email</label> */}
-        <input placeholder='your email' onChange={(e)=>setuseremail(e.target.value)} />
-        {/* <label for="password">password</label> */}
-        <input type='password'placeholder='your password'  onChange={(e)=>setuserpassword(e.target.value)} />
-        <button onClick={async()=>{
-            try {
-              const response= await axios.post('http://localhost:3000/admin/signup',{username:useremail,password:userpassword})
-              localStorage.setItem('token',response.data.token);
-              alert('user registered successfully');
-              console.log(response);
-            } catch (error) {
-               console.log(error); 
-            }
-        }}>Signup</button>
-      </form>
+    const [email,setEmail]=useState('')
+    console.log(email);
+    const [password,setPassword]=useState('')
+    console.log(password);
+
+    return <div>
+    <div style={{
+        paddingTop: 150,
+        marginBottom: 10,
+        display: "flex",
+        justifyContent: "center"
+    }}>
+        <Typography variant={"h6"}>
+        Welcome to Coursera. Sign up below
+        </Typography>
     </div>
-  )
+<div style={{display: "flex", justifyContent: "center"}}>
+    <Card varint={"outlined"} style={{width: 400, padding: 20}}>
+        <TextField
+            onChange={(event) => {
+                setEmail(event.target.value);
+            }}
+            fullWidth={true}
+            label="Email"
+            variant="outlined"
+        />
+        <br/><br/>
+        <TextField
+            onChange={(e) => {
+                setPassword(e.target.value);
+            }}
+            fullWidth={true}
+            label="Password"
+            variant="outlined"
+            type={"password"}
+        />
+        <br/><br/>
+
+        <Button
+            size={"large"}
+            variant="contained"
+            onClick={async() => {
+                const response = await axios.post(`${BASE_URL}/admin/signup`, {
+                    username: email,
+                    password: password
+                })
+                let data = response.data;
+                localStorage.setItem("token", data.token);
+                // window.location = "/"
+                setUser({userEmail: email, isLoading: false})
+                navigate("/courses")
+            }}
+
+        > Signup</Button>
+    </Card>
+</div>
+</div>
 }
 
-export default Signup
+export default Signup;
