@@ -3,6 +3,7 @@ import axios from 'axios'
 import Button from '@mui/material/Button';
 import TextField from "@mui/material/TextField";
 import {Card, Typography} from "@mui/material";
+import { BASE_URL } from '../../config';
 
 const Signin = () => {
     const [email,setEmail]=useState('')
@@ -23,12 +24,15 @@ const Signin = () => {
                   Welcome Back! Sign in below
                   </Typography>
               </div>
+
+
           <div style={{display: "flex", justifyContent: "center"}}>
-              <Card varint={"outlined"} style={{width: 400, padding: 20}}>
+
+              <Card variant={"outlined"} style={{width: 400, padding: 20}}>
                   <TextField
-                      onChange={(evant11) => {
-                          let elemt = evant11.target;
-                          setEmail(elemt.value);
+                      onChange={(e) => {
+                         
+                          setEmail(e.target.value);
                       }}
                       fullWidth={true}
                       label="Email"
@@ -64,11 +68,11 @@ const Signin = () => {
   
                           localStorage.setItem("token", data.token);
                           // window.location = "/"
-                          setUser({
-                              userEmail: email,
-                              isLoading: false
-                          })
-                          navigate("/courses")
+                        //   setUser({
+                        //       userEmail: email,
+                        //       isLoading: false
+                        //   })
+                        //   navigate("/courses")
                       }}
   
                   > Signin</Button>

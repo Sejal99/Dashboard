@@ -3,6 +3,8 @@ import axios from 'axios'
 import Button from '@mui/material/Button';
 import TextField from "@mui/material/TextField";
 import {Card, Typography} from "@mui/material";
+import { BASE_URL } from '../../config';
+
 
 const Signup = () => {
     const [email,setEmail]=useState('')
@@ -54,8 +56,8 @@ const Signup = () => {
                 let data = response.data;
                 localStorage.setItem("token", data.token);
                 // window.location = "/"
-                setUser({userEmail: email, isLoading: false})
-                navigate("/courses")
+                // setUser({userEmail: email, isLoading: false})
+                // navigate("/courses")
             }}
 
         > Signup</Button>

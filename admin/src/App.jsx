@@ -4,6 +4,8 @@ import React from 'react'
 import Navbar from './Components/Navbar'
 import Signin from './Components/Signin';
 import Signup from './Components/Signup';
+import AddCourse from './Components/AddCourse';
+
 
 const App = () => {
   return (
@@ -13,6 +15,8 @@ const App = () => {
         <Routes>
         <Route path={"/signin"} element={<Signin />} />
         <Route path={"/signup"} element={<Signup />} />
+        <Route path={"/courses"} element={<AddCourse />} />
+      
         </Routes>
       </Router>
      
