@@ -4,12 +4,14 @@ import Button from '@mui/material/Button';
 import TextField from "@mui/material/TextField";
 import {Card, Typography} from "@mui/material";
 import { BASE_URL } from '../../config';
+import {useNavigate} from "react-router-dom";
 
 const Signin = () => {
     const [email,setEmail]=useState('')
     console.log(email);
     const [password,setPassword]=useState('')
     console.log(password);
+    const navigate = useNavigate()
    
  
   
@@ -67,12 +69,12 @@ const Signin = () => {
                           const data = res.data;
   
                           localStorage.setItem("token", data.token);
-                          // window.location = "/"
+                          window.location = "/"
                         //   setUser({
                         //       userEmail: email,
                         //       isLoading: false
                         //   })
-                        //   navigate("/courses")
+                           navigate("/courses")
                       }}
   
                   > Signin</Button>
