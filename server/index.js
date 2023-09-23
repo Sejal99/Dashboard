@@ -7,7 +7,7 @@ const dotenv=require("dotenv");
 dotenv.config()
 const app = express();
 
- app.use(cors('http://localhost:5173'));
+ app.use(cors());
 
 
 

@@ -18,26 +18,22 @@ router.get("/me", authenticateJwt, async (req, res) => {
     })
 });
 
-router.post('/signup', (req, res) => {
-    const { username, password } = req.body;
-    console.log(username);
-    console.log(password);
-    function callback(admin) {
-      if (admin) {
-        res.status(403).json({ message: 'Admin already exists' });
-      } else {
-        const obj = { username: username, password: password };
-        const newAdmin = new Admin(obj);
-        newAdmin.save();
+router.post('/signup', async(req, res) => {
+  const {username, password} = req.body;
+  
+  try{
+    const admin= new Admin({username, password});
+    await admin.save();
 
-        const token = jwt.sign({ username, role: 'admin' }, process.env.SECRET, { expiresIn: '1h' });
-        res.status(200).json({ message: 'Admin created successfully', token });
-      }
-  
-    }
-    Admin.findOne({ username }).then(callback);
-  });
-  
+    const token = jwt.sign({ username , role: 'admin' }, process.env.SECRET, { expiresIn: '1h' });
+      res.json({ message: 'Admin created successfully', token });
+
+  }catch(err){
+    res.status(403).json({message:"Invalid request"})
+  }
+});
+
+
   router.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const admin = await Admin.findOne({ username, password });
@@ -75,17 +71,7 @@ router.post('/signup', (req, res) => {
     res.json({ course });
   });
 
-//   router.delete('/courses/:courseId', authenticateJwt, async (req,res)=> {
-//     const {courseId}= req.params;
-//     console.log(courseId);
-//     try{
-//        await Course.findByIdAndDelete(courseId);
-//        res.json({message: 'Course deleted successfully'})
-      
-//     }catch(err){    
-//       res.status(403).json(err);
-// }
-//   });
+
 
 
 router.delete('/course/:courseId',authenticateJwt,async(req,res)=>{

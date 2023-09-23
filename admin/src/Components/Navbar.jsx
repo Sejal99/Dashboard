@@ -16,6 +16,9 @@ const Navbar = () => {
         <button style={{cursor:'pointer'}} onClick={()=>navigate("/Signup")}>Signup</button>
         
         <button style={{cursor:'pointer'}} onClick={()=>navigate("/Signin")}>Signin</button>
+
+        <button style={{cursor:'pointer'}} onClick={()=>navigate("/courses")}>AddCourse</button>
+        
      </div>
 
    
