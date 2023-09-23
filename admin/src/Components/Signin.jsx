@@ -69,7 +69,7 @@ const Signin = () => {
                           const data = res.data;
   
                           localStorage.setItem("token", data.token);
-                          window.location = "/"
+                        
                         //   setUser({
                         //       userEmail: email,
                         //       isLoading: false

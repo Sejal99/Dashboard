@@ -5,12 +5,15 @@ import { BASE_URL } from '../../config';
 
 const AddCourse = () => {
     const [title, setTitle]=useState("");
+    
     const [description, setDescription]=useState("");
     const [price, setPrice]=useState(0);
     const [image, setImage]=useState("");
    
+   
 
-    return <div 
+    return (
+    <div 
     style={{display: "flex", 
     justifyContent: "center", 
     minHeight: "80vh",  
@@ -26,7 +29,7 @@ const AddCourse = () => {
 
 
                 <TextField
-                    onClick={(e)=>{
+                    onChange={(e)=>{
                         setTitle(e.target.value);
                     }}
                    
@@ -36,7 +39,7 @@ const AddCourse = () => {
                 />
 
                 <TextField
-                      onClick={(e)=>{
+                      onChange={(e)=>{
                         setDescription(e.target.value);
                     }}
 
@@ -46,7 +49,7 @@ const AddCourse = () => {
                 />
 
                 <TextField
-                      onClick={(e)=>{
+                      onChange={(e)=>{
                         setImage(e.target.value);
                     }}
                     
@@ -57,7 +60,7 @@ const AddCourse = () => {
 
                 <TextField
                  
-                 onClick={(e)=>{
+                 onChange={(e)=>{
                     setPrice(e.target.value);
                 }}
                     fullWidth={true}
@@ -86,6 +89,8 @@ const AddCourse = () => {
             </Card>
         </div>
     </div>
+    )
 }
+
 
 export default AddCourse;

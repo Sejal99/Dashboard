@@ -3,6 +3,25 @@ import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
   const navigate=useNavigate()
+  const token=localStorage.getItem('token')
+  if(token)
+  {
+    return(
+      <div>
+        <button style={{cursor:'pointer'}} onClick={()=>navigate("/addCourse")}>AddCourse</button>
+        <button onClick={()=>{
+          navigate('/courses')
+        }}>View Courses</button>
+
+        <button>Logout</button>
+      </div>
+    )
+  }else{
+
+  
+
+
+
   return (
     <div style={{display:'flex',justifyContent:'space-between'}}>
         
@@ -17,13 +36,14 @@ const Navbar = () => {
         
         <button style={{cursor:'pointer'}} onClick={()=>navigate("/Signin")}>Signin</button>
 
-        <button style={{cursor:'pointer'}} onClick={()=>navigate("/courses")}>AddCourse</button>
+        
         
      </div>
 
    
     </div>
   )
+}
 }
 
 export default Navbar

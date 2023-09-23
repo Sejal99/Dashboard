@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar'
 import Signin from './Components/Signin';
 import Signup from './Components/Signup';
 import AddCourse from './Components/AddCourse';
+import Courses from './Components/Courses';
 
 
 const App = () => {
@@ -15,7 +16,9 @@ const App = () => {
         <Routes>
         <Route path={"/signin"} element={<Signin />} />
         <Route path={"/signup"} element={<Signup />} />
-        <Route path={"/courses"} element={<AddCourse />} />
+        <Route path={"/addCourse"} element={<AddCourse />} />
+        <Route path={"/courses"} element={<Courses />} />
+
       
         </Routes>
       </Router>
