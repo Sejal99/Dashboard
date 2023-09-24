@@ -46,6 +46,8 @@ export function Course({course}) {
         <Typography textAlign={"center"} variant="subtitle1">{course.description}</Typography>
         <br/>
         <img src={course.imageLink} style={{width: 300}} ></img>
+        <Typography textAlign={"center"} variant="h5">{course.price}</Typography>
+        <br/>
         <div style={{display: "flex", justifyContent: "center", marginTop: 20}}>
             <Button variant="contained" size="large" onClick={() => {
                 navigate("/course/" + course._id);

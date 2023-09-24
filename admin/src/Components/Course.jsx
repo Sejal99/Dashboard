@@ -4,12 +4,12 @@ import { BASE_URL } from "../../config";
 import { useParams } from "react-router-dom";
 import { Card, TextField,Button } from "@mui/material";
 const Course = () => {
-    const[course,setCourse]=useState({});
-    const [title, setTitle]=useState(course.title);
     
-    const [description, setDescription]=useState(course.description);
-    const [price, setPrice]=useState(course.price);
-    const [image, setImage]=useState(course.imageLink);
+    const [title, setTitle]=useState("");
+    
+    const [description, setDescription]=useState("");
+    const [price, setPrice]=useState(0);
+    const [image, setImage]=useState("");
 
     const {courseId}=useParams()
     console.log(courseId);
@@ -24,8 +24,11 @@ const Course = () => {
             Authorization: "bearer " + localStorage.getItem("token"),
           },
         });
-        setCourse(res.data.course);
-
+        
+        setTitle(res.data.course.title);
+        setDescription(res.data.course.description);
+        setImage(res.data.course.image);
+        setPrice(res.data.course.price);
       } catch (error) {
         console.log(error);
       }
@@ -33,9 +36,7 @@ const Course = () => {
     func();
   }, []);
 
-  if(!course.title){
-    return <div>loading</div>
-}
+ 
 
   return <div
    style={{display: "flex", 
@@ -53,41 +54,44 @@ const Course = () => {
 
 
                 <TextField
+                  value={title}
                     onChange={(e)=>{
                         setTitle(e.target.value);
                     }}
-                   value={title}
+                 
                     fullWidth={true}
                     label="Title"
                     variant="outlined"
                 />
 
                 <TextField
+                 value={description}
                       onChange={(e)=>{
                         setDescription(e.target.value);
                     }}
-                        value={description}
+                       
                     fullWidth={true}
                     label="Description"
                     variant="outlined"
                 />
 
                 <TextField
+                    value={image}
                       onChange={(e)=>{
                         setImage(e.target.value);
                     }}
-                    value={image}
+                
                     fullWidth={true}
                     label="Image link"
                     variant="outlined"
                 />
 
                 <TextField
-                 
+                   value={price}
                  onChange={(e)=>{
                     setPrice(e.target.value);
                 }}
-                value={price}
+              
                     fullWidth={true}
                     label="Price"
                     variant="outlined"
