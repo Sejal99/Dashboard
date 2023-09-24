@@ -6,6 +6,7 @@ import Signin from './Components/Signin';
 import Signup from './Components/Signup';
 import AddCourse from './Components/AddCourse';
 import Courses from './Components/Courses';
+import Course from './Components/Course';
 
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
         <Route path={"/signup"} element={<Signup />} />
         <Route path={"/addCourse"} element={<AddCourse />} />
         <Route path={"/courses"} element={<Courses />} />
+        <Route path={"/course/:courseId"} element={<Course />} />
 
       
         </Routes>
