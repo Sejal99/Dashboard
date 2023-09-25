@@ -7,10 +7,12 @@ import Signup from './Components/Signup';
 import AddCourse from './Components/AddCourse';
 import Courses from './Components/Courses';
 import Course from './Components/Course';
+import { RecoilRoot } from 'recoil';
 
 
 const App = () => {
   return (
+    <RecoilRoot>
     <div>
       <Router>
       <Navbar />
@@ -26,6 +28,7 @@ const App = () => {
       </Router>
      
     </div>
+    </RecoilRoot>
   )
 }
 
