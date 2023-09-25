@@ -74,7 +74,7 @@ const Signin = () => {
                         //       userEmail: email,
                         //       isLoading: false
                         //   })
-                           navigate("/courses")
+                           window.location ="/courses"
                       }}
   
                   > Signin</Button>

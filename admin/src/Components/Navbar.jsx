@@ -1,10 +1,30 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import { BASE_URL } from "../../config";
 const Navbar = () => {
   const navigate=useNavigate()
-  const token=localStorage.getItem('token')
-  if(token)
+  const[name,setName]=useState("");
+ useEffect(()=>{
+  const f = async()=>{
+    try {
+    const res=  await axios.get(`${BASE_URL}/admin/me`,{
+
+      headers: {
+        Authorization: "bearer " + localStorage.getItem("token"),
+      },
+    });
+    setName(res.data);
+  }
+  
+    catch (error) {
+      console.log(error);
+    }
+  }
+  f();
+ },[])
+
+  if(name!="")
   {
     return(
       <div>
@@ -13,13 +33,16 @@ const Navbar = () => {
           navigate('/courses')
         }}>View Courses</button>
 
-        <button>Logout</button>
+        <button onClick={()=>{
+          localStorage.clear()
+          window.location='/'
+        }}>Logout</button>
+
       </div>
     )
-  }else{
-
+  }
   
-
+  else{
 
 
   return (

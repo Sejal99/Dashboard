@@ -7,16 +7,10 @@ const { authenticateJwt } = require("../middleware/auth");
 
 const router = express.Router();
 
-router.get("/me", authenticateJwt, async (req, res) => {
-    const admin = await Admin.findOne({ username: req.user.username });
-    if (!admin) {
-      res.status(403).json({msg: "Admin doesnt exist"})
-      return
-    }
-    res.json({
-        username: admin.username
-    })
-});
+router.get('/me',authenticateJwt,async(req,res)=>{
+console.log(req.user.username);
+res.json(req.user.username);
+})
 
 router.post('/signup', async(req, res) => {
   const {username, password} = req.body;
@@ -47,6 +41,7 @@ router.post('/signup', async(req, res) => {
   
   router.post('/courses', authenticateJwt, async (req, res) => {
     const course = new Course(req.body);
+    console.log(req.body);
     await course.save();
     res.json({ message: 'Course created successfully', courseId: course.id });
   });
@@ -62,13 +57,19 @@ router.post('/signup', async(req, res) => {
   
   router.get('/courses', authenticateJwt, async (req, res) => {
     const courses = await Course.find({});
+    console.log(courses);
     res.json({ courses });
   });
   
   router.get('/course/:courseId', authenticateJwt, async (req, res) => {
-    const courseId = req.params.courseId;
+    try {
+      const courseId = req.params.courseId;
     const course = await Course.findById(courseId);
     res.json({ course });
+    } catch (error) {
+      res.status(404).json({message:'course not found'})
+    }
+    
   });
 
 
