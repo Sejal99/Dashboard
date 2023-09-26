@@ -12,6 +12,7 @@ import { RecoilRoot } from 'recoil';
 
 const App = () => {
   return (
+    //adding recoil
     <RecoilRoot>
     <div>
       <Router>
