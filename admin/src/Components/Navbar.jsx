@@ -16,7 +16,7 @@ const Navbar = () => {
     });
     setName(res.data);
   }
-  
+  //catch errors
     catch (error) {
       console.log(error);
     }
