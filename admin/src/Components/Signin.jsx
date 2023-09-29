@@ -60,20 +60,13 @@ const Signin = () => {
                               username: email,
                               password: password
                           },
-                          //  {
-                          //     headers: {
-                          //         "Content-type": "application/json"
-                          //     }
-                          // }
+                         
                           );
                           const data = res.data;
   
                           localStorage.setItem("token", data.token);
                         
-                        //   setUser({
-                        //       userEmail: email,
-                        //       isLoading: false
-                        //   })
+                       
                            window.location ="/courses"
                       }}
   
