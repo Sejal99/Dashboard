@@ -48,7 +48,9 @@ const Navbar = () => {
         </button>
       </div>
     );
-  } else {
+  }
+  //else condition
+   else {
     return (
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ fontSize: 10 }}>
